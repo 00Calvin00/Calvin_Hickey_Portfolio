@@ -8,10 +8,6 @@
       content="The personal portfolio of Calvin Hickey, an aspiring full-stack developer."
     />
     <title>Calvin Hickey | Aspiring Full-Stack Developer</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-    />
     <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
@@ -44,7 +40,21 @@
           </div>
         </div>
         <div class="hero-image-wrap">
-          <img src="img/Calvin.JPG" alt="Portrait of Calvin Hickey" />
+          <picture>
+            <source
+              type="image/webp"
+              srcset="img/portrait-400.webp 400w, img/portrait-800.webp 800w"
+              sizes="310px"
+            />
+            <img
+              src="img/portrait-400.jpg"
+              srcset="img/portrait-400.jpg 400w, img/portrait-800.jpg 800w"
+              sizes="310px"
+              width="400"
+              height="500"
+              alt="Portrait of Calvin Hickey"
+            />
+          </picture>
           <p class="image-note">Based in Millcreek City, Utah</p>
         </div>
       </section>
@@ -80,17 +90,26 @@
         <div class="section-label">02 / Skills</div>
         <div class="skills-list">
           <div class="skill-group">
-            <h3><i class="fa-solid fa-code skill-icon" aria-hidden="true"></i>Development</h3>
+            <h3>
+              <svg class="icon skill-icon" aria-hidden="true">
+                <use href="img/icons.svg#code"></use></svg
+              >Development
+            </h3>
             <p>Python, JavaScript, TypeScript, Java, C#, C++, Kotlin, SQL, HTML, CSS</p>
           </div>
           <div class="skill-group">
-            <h3><i class="fa-solid fa-layer-group skill-icon" aria-hidden="true"></i>Frameworks</h3>
+            <h3>
+              <svg class="icon skill-icon" aria-hidden="true">
+                <use href="img/icons.svg#layers"></use></svg
+              >Frameworks
+            </h3>
             <p>React, React Native, Django, Flask, Qt, pytest, Pandas</p>
           </div>
           <div class="skill-group">
             <h3>
-              <i class="fa-solid fa-wand-magic-sparkles skill-icon" aria-hidden="true"></i>Design +
-              AI
+              <svg class="icon skill-icon" aria-hidden="true">
+                <use href="img/icons.svg#sparkles"></use></svg
+              >Design + AI
             </h3>
             <p>Figma, design systems, WCAG accessibility, VUI design, Claude API, Picovoice</p>
           </div>
@@ -106,7 +125,23 @@
         <div class="project-list">
           <article class="project-card project-featured">
             <div class="project-image blue-image">
-              <img src="img/UGuide.png" alt="UGuide student guidance platform homepage" />
+              <picture>
+                <source
+                  type="image/webp"
+                  srcset="img/uguide-700.webp 700w, img/uguide-1400.webp 1400w"
+                  sizes="(width <= 720px) 88vw, 600px"
+                />
+                <img
+                  src="img/uguide-700.jpg"
+                  srcset="img/uguide-700.jpg 700w, img/uguide-1400.jpg 1400w"
+                  sizes="(width <= 720px) 88vw, 600px"
+                  width="700"
+                  height="438"
+                  loading="lazy"
+                  decoding="async"
+                  alt="UGuide student guidance platform homepage"
+                />
+              </picture>
               <span class="project-number">01</span>
             </div>
             <div class="project-info">
@@ -138,7 +173,23 @@
 
           <article class="project-card">
             <div class="project-image green-image">
-              <img src="img/Apecoo.png" alt="Apecoo AI oven and roti-tilla experience" />
+              <picture>
+                <source
+                  type="image/webp"
+                  srcset="img/apecoo-700.webp 700w, img/apecoo-1400.webp 1400w"
+                  sizes="(width <= 720px) 88vw, 600px"
+                />
+                <img
+                  src="img/apecoo-700.jpg"
+                  srcset="img/apecoo-700.jpg 700w, img/apecoo-1400.jpg 1400w"
+                  sizes="(width <= 720px) 88vw, 600px"
+                  width="700"
+                  height="438"
+                  loading="lazy"
+                  decoding="async"
+                  alt="Apecoo AI oven and roti-tilla experience"
+                />
+              </picture>
               <span class="project-number">03</span>
             </div>
             <div class="project-info">
