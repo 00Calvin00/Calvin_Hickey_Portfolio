@@ -81,3 +81,8 @@ function initMobileMenu() {
 }
 
 initMobileMenu();
+
+/** Keep the footer copyright year current without editing the HTML each January. */
+for (const el of document.querySelectorAll('[data-year]')) {
+  el.textContent = String(new Date().getFullYear());
+}
