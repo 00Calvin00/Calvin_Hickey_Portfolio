@@ -86,3 +86,29 @@ initMobileMenu();
 for (const el of document.querySelectorAll('[data-year]')) {
   el.textContent = String(new Date().getFullYear());
 }
+
+/** Load the drum machine only when its section is about to scroll into view. */
+function initGrooveWhenVisible() {
+  const root = document.querySelector('[data-groove]');
+  if (!root) return;
+
+  const load = () => import('./groove.js').then(({ initGroove }) => initGroove(root));
+
+  if (!('IntersectionObserver' in window)) {
+    load();
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      if (entries.some((entry) => entry.isIntersecting)) {
+        observer.disconnect();
+        load();
+      }
+    },
+    { rootMargin: '400px 0px' },
+  );
+  observer.observe(root);
+}
+
+initGrooveWhenVisible();

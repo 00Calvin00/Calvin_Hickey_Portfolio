@@ -628,9 +628,67 @@
             <li class="interest interest-wide">
               <svg class="icon" aria-hidden="true"><use href="img/icons.svg#drum"></use></svg>
               <h3>Drums</h3>
-              <p>Taught 40+ students ages 5 to 56 through my own studio.</p>
+              <p>
+                Taught 40+ students ages 5 to 56 through my own studio.
+                <a href="#groove">Play a groove I wrote</a>.
+              </p>
             </li>
           </ul>
+
+          <section class="groove" id="groove" aria-labelledby="groove-title" data-groove>
+            <div class="groove-intro">
+              <h3 id="groove-title">A groove I wrote</h3>
+              <p>
+                An original 16th-note groove from my drum studio days. Press play, then click any
+                step (or use the arrow keys and space) to remix it.
+              </p>
+            </div>
+            <div class="groove-controls" data-groove-controls hidden>
+              <button class="button" type="button" data-groove-play>
+                <svg class="icon icon-play" aria-hidden="true">
+                  <use href="img/icons.svg#play"></use>
+                </svg>
+                <svg class="icon icon-stop" aria-hidden="true">
+                  <use href="img/icons.svg#stop"></use>
+                </svg>
+                <span data-label>Play</span>
+              </button>
+              <div class="groove-tempo">
+                <label for="groove-tempo">Tempo</label>
+                <input
+                  id="groove-tempo"
+                  type="range"
+                  min="60"
+                  max="160"
+                  step="2"
+                  value="96"
+                  data-groove-tempo
+                />
+                <span><output for="groove-tempo" data-groove-tempo-output>96</output> BPM</span>
+              </div>
+              <button class="text-link groove-reset" type="button" data-groove-reset>
+                Reset to my groove
+              </button>
+            </div>
+            <div
+              class="groove-grid"
+              role="grid"
+              aria-label="Drum pattern: three instruments across 16 steps"
+              data-groove-grid
+              hidden
+            ></div>
+            <details class="groove-notation">
+              <summary>Read it as drum notation</summary>
+              <pre data-groove-notation>
+HH |x-xx -x-- x-xx -xx-|
+SN |-o-- o-oo -oo- oo-o|
+BD |o-oo -o-- o--o -oo-|</pre>
+              <p>
+                Hi-hat (HH), snare (SN) and bass drum (BD). Each x or o is a hit and each dash is a
+                rest, four 16th notes to a beat.
+              </p>
+            </details>
+          </section>
         </div>
       </section>
 

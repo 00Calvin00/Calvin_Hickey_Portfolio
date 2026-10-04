@@ -213,6 +213,11 @@
     background: var(--color-accent-text);
   }
 
+  /* Author display rules (grid, flex) would otherwise override the hidden attribute */
+  [hidden] {
+    display: none !important;
+  }
+
   /* Sprite icons take the current text color and scale with font size */
   .icon {
     width: 1em;
@@ -1176,6 +1181,166 @@
     object-fit: cover;
   }
 
+  /* --- Drum groove sequencer --- */
+  .groove {
+    margin-top: clamp(56px, 8vw, 96px);
+    padding: clamp(24px, 4vw, 40px);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius);
+    background: var(--color-surface);
+  }
+
+  .groove-intro {
+    max-width: 60ch;
+  }
+
+  .groove-intro h3 {
+    margin-bottom: 8px;
+    font-size: var(--text-h3);
+  }
+
+  .groove-intro p {
+    color: var(--color-ink-muted);
+  }
+
+  .groove-controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px 28px;
+    margin-block: 24px;
+  }
+
+  .groove-controls .icon-stop,
+  .is-playing .icon-play {
+    display: none;
+  }
+
+  .is-playing .icon-stop {
+    display: block;
+  }
+
+  .groove-tempo {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: var(--text-sm);
+    font-weight: 600;
+  }
+
+  .groove-tempo input {
+    width: 140px;
+    accent-color: var(--color-accent-text);
+  }
+
+  .groove-tempo output {
+    min-width: 3ch;
+    font-variant-numeric: tabular-nums;
+    text-align: right;
+  }
+
+  .groove-reset {
+    border-top: 0;
+    border-right: 0;
+    border-left: 0;
+    background: none;
+    cursor: pointer;
+  }
+
+  .groove-grid {
+    display: grid;
+    gap: 10px;
+  }
+
+  .groove-row {
+    display: grid;
+    grid-template-columns: 6.5rem repeat(16, minmax(0, 1fr));
+    gap: 6px;
+    align-items: center;
+  }
+
+  .groove-voice {
+    font-size: var(--text-sm);
+    font-weight: 600;
+  }
+
+  .step {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1;
+    padding: 0;
+    border: 1px solid var(--color-line);
+    border-radius: 4px;
+    background: var(--color-bg);
+    cursor: pointer;
+    transition:
+      background 120ms,
+      transform 120ms;
+  }
+
+  .beat-alt .step {
+    background: color-mix(in srgb, var(--color-line) 55%, var(--color-bg));
+  }
+
+  .step:hover {
+    border-color: var(--color-ink-muted);
+  }
+
+  .voice-hh .step[aria-pressed='true'] {
+    border-color: #4f8f88;
+    background: var(--color-tint-1);
+  }
+
+  .voice-sn .step[aria-pressed='true'] {
+    border-color: var(--color-accent-text);
+    background: var(--color-accent);
+  }
+
+  .voice-bd .step[aria-pressed='true'] {
+    border-color: var(--color-ink);
+    background: var(--color-ink);
+  }
+
+  .step.is-current {
+    box-shadow: 0 0 0 2px var(--color-accent-text);
+    transform: scale(1.12);
+  }
+
+  .groove-notation {
+    margin-top: 24px;
+    font-size: var(--text-sm);
+  }
+
+  .groove-notation summary {
+    width: fit-content;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .groove-notation pre {
+    overflow-x: auto;
+    padding: 16px;
+    border-radius: var(--radius);
+    color: var(--color-bg);
+    background: var(--color-ink);
+    font-size: var(--text-sm);
+  }
+
+  .groove-notation p {
+    color: var(--color-ink-muted);
+  }
+
+  @media (width <= 560px) {
+    .groove-row {
+      grid-template-columns: repeat(16, minmax(0, 1fr));
+      gap: 3px;
+    }
+
+    .groove-voice {
+      grid-column: 1 / -1;
+    }
+  }
+
   /* --- Contact --- */
   .contact-inner {
     position: relative;
@@ -1645,6 +1810,62 @@
     font-size: 1.3rem;
     line-height: 1.15;
     text-transform: none;
+  }
+
+  [data-theme='dark'] .groove {
+    border-color: var(--color-line);
+    border-radius: 0;
+    background: rgb(5 8 5 / 80%);
+  }
+
+  [data-theme='dark'] .groove-voice,
+  [data-theme='dark'] .groove-tempo {
+    font-family: var(--font-label);
+    font-weight: 400;
+  }
+
+  [data-theme='dark'] .groove-tempo input {
+    accent-color: var(--color-accent);
+  }
+
+  [data-theme='dark'] .step {
+    border-color: rgb(232 245 227 / 18%);
+    border-radius: 2px;
+    background: transparent;
+  }
+
+  [data-theme='dark'] .beat-alt .step {
+    background: rgb(232 245 227 / 7%);
+  }
+
+  [data-theme='dark'] .voice-hh .step[aria-pressed='true'] {
+    border-color: var(--color-cyan);
+    background: var(--color-cyan);
+    box-shadow: 0 0 10px var(--color-cyan);
+  }
+
+  [data-theme='dark'] .voice-sn .step[aria-pressed='true'] {
+    border-color: var(--color-pink);
+    background: var(--color-pink);
+    box-shadow: var(--glow-pink);
+  }
+
+  [data-theme='dark'] .voice-bd .step[aria-pressed='true'] {
+    border-color: var(--color-accent);
+    background: var(--color-accent);
+    box-shadow: 0 0 10px var(--color-accent);
+  }
+
+  [data-theme='dark'] .step.is-current {
+    box-shadow:
+      0 0 0 2px var(--color-neon-core),
+      0 0 18px var(--color-neon-core);
+  }
+
+  [data-theme='dark'] .groove-notation pre {
+    border: 1px solid var(--color-line);
+    color: var(--color-accent);
+    background: #000;
   }
 
   /* Easter egg for the Dark Souls card */
