@@ -8,208 +8,237 @@
       content="The personal portfolio of Calvin Hickey, an aspiring full-stack developer."
     />
     <title>Calvin Hickey | Aspiring Full-Stack Developer</title>
+    <link rel="preload" href="fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="fonts/inter.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
-    <!-- The header gives visitors a simple way to move around the page. -->
+    <a class="skip-link" href="#main">Skip to content</a>
+
     <header class="site-header">
-      <a class="logo" href="#top">CH<span>.</span></a>
-      <nav aria-label="Main navigation">
-        <a href="#about">About</a>
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
-        <a class="nav-button" href="mailto:calvinjhickey@gmail.com">Contact</a>
-      </nav>
+      <div class="container header-inner">
+        <a class="logo" href="#top" aria-label="Calvin Hickey, back to top">CH<span>.</span></a>
+        <nav aria-label="Main">
+          <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li>
+              <a class="button button-small" href="mailto:calvinjhickey@gmail.com">Contact</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </header>
 
-    <main id="top">
-      <!-- Hero section: introduce yourself and your main call to action. -->
-      <section class="hero section-width">
-        <div class="hero-text">
+    <main id="main">
+      <section class="container hero" id="top" aria-labelledby="hero-title">
+        <div>
           <p class="eyebrow">Hello, I’m Calvin</p>
-          <h1>Building useful things for curious people.</h1>
+          <h1 id="hero-title">Building useful things for <em>curious</em> people.</h1>
           <p class="hero-intro">
             I’m an aspiring full-stack developer who enjoys turning thoughtful ideas into helpful,
             intuitive, and efficient tools.
           </p>
-          <div class="hero-links">
-            <a class="button" href="#projects">See my projects <span aria-hidden="true">↓</span></a>
-            <a class="text-link" href="mailto:calvinjhickey@gmail.com"
-              >Let’s talk <span aria-hidden="true">↗</span></a
-            >
+          <div class="hero-actions">
+            <a class="button" href="#projects"
+              >See my projects
+              <svg class="icon" aria-hidden="true"><use href="img/icons.svg#arrow-right"></use></svg
+            ></a>
+            <a class="text-link" href="mailto:calvinjhickey@gmail.com">Let’s talk</a>
           </div>
         </div>
-        <div class="hero-image-wrap">
+        <figure class="hero-portrait">
           <picture>
             <source
               type="image/webp"
               srcset="img/portrait-400.webp 400w, img/portrait-800.webp 800w"
-              sizes="310px"
+              sizes="(width <= 720px) 78vw, 320px"
             />
             <img
               src="img/portrait-400.jpg"
               srcset="img/portrait-400.jpg 400w, img/portrait-800.jpg 800w"
-              sizes="310px"
+              sizes="(width <= 720px) 78vw, 320px"
               width="400"
               height="500"
-              alt="Portrait of Calvin Hickey"
+              fetchpriority="high"
+              alt="Portrait of Calvin Hickey smiling in front of a dark backdrop"
             />
           </picture>
-          <p class="image-note">Based in Millcreek City, Utah</p>
-        </div>
+          <figcaption>Based in Millcreek City, Utah</figcaption>
+        </figure>
       </section>
 
-      <!-- About section: a short introduction keeps the page easy to scan. -->
-      <section class="about section-width" id="about">
-        <div class="section-label">01 / About</div>
-        <div class="about-content">
-          <h2>I care about the space between people and technology.</h2>
-          <div>
-            <p>
-              I’m studying Software Development at the University of Utah, where I combine technical
-              problem-solving with human-centered design. I like asking what a tool should feel like
-              before I decide how it should work.
-            </p>
-            <p>
-              Outside of code, I play the drums, love climbing, learning new things, and going to
-              community events.
-            </p>
-            <a
-              class="text-link"
-              href="https://www.linkedin.com/in/calvin-hickey-3780a1312/"
-              target="_blank"
-              rel="noopener"
-              >More about me <span aria-hidden="true">↗</span></a
-            >
-          </div>
-        </div>
-      </section>
-
-      <!-- Skills section: group related skills so they are easier to read. -->
-      <section class="skills section-width" id="skills">
-        <div class="section-label">02 / Skills</div>
-        <div class="skills-list">
-          <div class="skill-group">
-            <h3>
-              <svg class="icon skill-icon" aria-hidden="true">
-                <use href="img/icons.svg#code"></use></svg
-              >Development
-            </h3>
-            <p>Python, JavaScript, TypeScript, Java, C#, C++, Kotlin, SQL, HTML, CSS</p>
-          </div>
-          <div class="skill-group">
-            <h3>
-              <svg class="icon skill-icon" aria-hidden="true">
-                <use href="img/icons.svg#layers"></use></svg
-              >Frameworks
-            </h3>
-            <p>React, React Native, Django, Flask, Qt, pytest, Pandas</p>
-          </div>
-          <div class="skill-group">
-            <h3>
-              <svg class="icon skill-icon" aria-hidden="true">
-                <use href="img/icons.svg#sparkles"></use></svg
-              >Design + AI
-            </h3>
-            <p>Figma, design systems, WCAG accessibility, VUI design, Claude API, Picovoice</p>
+      <section class="section" id="about" aria-labelledby="about-title">
+        <div class="container">
+          <header class="section-header">
+            <p class="section-label"><span>01</span> About</p>
+            <h2 id="about-title">I care about the space between people and technology.</h2>
+          </header>
+          <div class="about-body">
+            <div class="about-copy">
+              <p>
+                I’m studying Software Development at the University of Utah, where I combine
+                technical problem-solving with human-centered design. I like asking what a tool
+                should feel like before I decide how it should work.
+              </p>
+              <p>
+                Outside of code, I play the drums, love climbing, learning new things, and going to
+                community events.
+              </p>
+              <a
+                class="text-link"
+                href="https://www.linkedin.com/in/calvin-hickey-3780a1312/"
+                rel="noopener"
+                >More about me
+                <svg class="icon" aria-hidden="true"><use href="img/icons.svg#external"></use></svg
+              ></a>
+            </div>
           </div>
         </div>
       </section>
 
-      <!-- Projects section: add more project cards here as your portfolio grows. -->
-      <section class="projects section-width" id="projects">
-        <div class="section-heading">
-          <div class="section-label">03 / Selected projects</div>
-          <h2>A few things I’ve been working on.</h2>
+      <section class="section" id="skills" aria-labelledby="skills-title">
+        <div class="container">
+          <header class="section-header">
+            <p class="section-label"><span>02</span> Skills</p>
+            <h2 id="skills-title">Tools I reach for.</h2>
+          </header>
+          <ul class="skill-grid">
+            <li class="skill-group">
+              <h3>
+                <svg class="icon" aria-hidden="true"><use href="img/icons.svg#code"></use></svg
+                >Development
+              </h3>
+              <p>Python, JavaScript, TypeScript, Java, C#, C++, Kotlin, SQL, HTML, CSS</p>
+            </li>
+            <li class="skill-group">
+              <h3>
+                <svg class="icon" aria-hidden="true"><use href="img/icons.svg#layers"></use></svg
+                >Frameworks
+              </h3>
+              <p>React, React Native, Django, Flask, Qt, pytest, Pandas</p>
+            </li>
+            <li class="skill-group">
+              <h3>
+                <svg class="icon" aria-hidden="true"><use href="img/icons.svg#sparkles"></use></svg
+                >Design + AI
+              </h3>
+              <p>Figma, design systems, WCAG accessibility, VUI design, Claude API, Picovoice</p>
+            </li>
+          </ul>
         </div>
-        <div class="project-list">
-          <article class="project-card project-featured">
-            <div class="project-image blue-image">
-              <picture>
-                <source
-                  type="image/webp"
-                  srcset="img/uguide-700.webp 700w, img/uguide-1400.webp 1400w"
-                  sizes="(width <= 720px) 88vw, 600px"
-                />
-                <img
-                  src="img/uguide-700.jpg"
-                  srcset="img/uguide-700.jpg 700w, img/uguide-1400.jpg 1400w"
-                  sizes="(width <= 720px) 88vw, 600px"
-                  width="700"
-                  height="438"
-                  loading="lazy"
-                  decoding="async"
-                  alt="UGuide student guidance platform homepage"
-                />
-              </picture>
-              <span class="project-number">01</span>
-            </div>
-            <div class="project-info">
-              <p class="project-type">Student guidance platform</p>
-              <h3>UGuide</h3>
-              <p>
-                A React-based platform that helps students explore majors through a clear,
-                accessible, and intuitive experience.
-              </p>
-              <p class="tags">React / JavaScript / Accessibility</p>
-            </div>
-          </article>
+      </section>
 
-          <article class="project-card">
-            <div class="project-image coral-image">
-              <span class="project-number">02</span>
-              <span class="shape-word">HUBBLE</span>
-            </div>
-            <div class="project-info">
-              <p class="project-type">Interactive book discovery</p>
-              <h3>Hubble</h3>
-              <p>
-                A 3D discovery interface that turns browsing books by genre into a spatial,
-                exploratory experience.
-              </p>
-              <p class="tags">React Native / Three.js / Supabase</p>
-            </div>
-          </article>
+      <section class="section" id="projects" aria-labelledby="projects-title">
+        <div class="container">
+          <header class="section-header">
+            <p class="section-label"><span>03</span> Selected projects</p>
+            <h2 id="projects-title">A few things I’ve been working on.</h2>
+          </header>
+          <ol class="project-list">
+            <li class="project-card">
+              <div class="project-media">
+                <span class="project-number" aria-hidden="true">01</span>
+                <picture>
+                  <source
+                    type="image/webp"
+                    srcset="img/uguide-700.webp 700w, img/uguide-1400.webp 1400w"
+                    sizes="(width <= 720px) 90vw, 640px"
+                  />
+                  <img
+                    src="img/uguide-700.jpg"
+                    srcset="img/uguide-700.jpg 700w, img/uguide-1400.jpg 1400w"
+                    sizes="(width <= 720px) 90vw, 640px"
+                    width="700"
+                    height="438"
+                    loading="lazy"
+                    decoding="async"
+                    alt="UGuide homepage with three paths: Discover Yourself, Explore Programs and Browse Careers"
+                  />
+                </picture>
+              </div>
+              <div class="project-body">
+                <p class="kicker">Student guidance platform</p>
+                <h3>UGuide</h3>
+                <p>
+                  A React-based platform that helps students explore majors through a clear,
+                  accessible, and intuitive experience.
+                </p>
+                <ul class="tag-list" aria-label="Technologies">
+                  <li>React</li>
+                  <li>JavaScript</li>
+                  <li>Accessibility</li>
+                </ul>
+              </div>
+            </li>
 
-          <article class="project-card">
-            <div class="project-image green-image">
-              <picture>
-                <source
-                  type="image/webp"
-                  srcset="img/apecoo-700.webp 700w, img/apecoo-1400.webp 1400w"
-                  sizes="(width <= 720px) 88vw, 600px"
-                />
-                <img
-                  src="img/apecoo-700.jpg"
-                  srcset="img/apecoo-700.jpg 700w, img/apecoo-1400.jpg 1400w"
-                  sizes="(width <= 720px) 88vw, 600px"
-                  width="700"
-                  height="438"
-                  loading="lazy"
-                  decoding="async"
-                  alt="Apecoo AI oven and roti-tilla experience"
-                />
-              </picture>
-              <span class="project-number">03</span>
-            </div>
-            <div class="project-info">
-              <p class="project-type">Product experience and AI oven</p>
-              <h3>Apecoo Roti-Tilla Pro</h3>
-              <p>
-                A product experience for an AI-powered oven that makes fresh roti, tortillas, and
-                chapati easier to enjoy at home.
-              </p>
-              <p class="tags">Product design / AI / User experience</p>
-            </div>
-          </article>
+            <li class="project-card">
+              <div class="project-media project-tint-2">
+                <span class="project-number" aria-hidden="true">02</span>
+                <div class="project-art" aria-hidden="true">Hubble</div>
+              </div>
+              <div class="project-body">
+                <p class="kicker">Interactive book discovery</p>
+                <h3>Hubble</h3>
+                <p>
+                  A 3D discovery interface that turns browsing books by genre into a spatial,
+                  exploratory experience.
+                </p>
+                <ul class="tag-list" aria-label="Technologies">
+                  <li>React Native</li>
+                  <li>Three.js</li>
+                  <li>Supabase</li>
+                </ul>
+              </div>
+            </li>
+
+            <li class="project-card">
+              <div class="project-media project-tint-3">
+                <span class="project-number" aria-hidden="true">03</span>
+                <picture>
+                  <source
+                    type="image/webp"
+                    srcset="img/apecoo-700.webp 700w, img/apecoo-1400.webp 1400w"
+                    sizes="(width <= 720px) 90vw, 640px"
+                  />
+                  <img
+                    src="img/apecoo-700.jpg"
+                    srcset="img/apecoo-700.jpg 700w, img/apecoo-1400.jpg 1400w"
+                    sizes="(width <= 720px) 90vw, 640px"
+                    width="700"
+                    height="438"
+                    loading="lazy"
+                    decoding="async"
+                    alt="Apecoo Roti-Tilla Pro, a countertop flatbread-making robot with a control panel"
+                  />
+                </picture>
+              </div>
+              <div class="project-body">
+                <p class="kicker">Product experience and AI oven</p>
+                <h3>Apecoo Roti-Tilla Pro</h3>
+                <p>
+                  A product experience for an AI-powered oven that makes fresh roti, tortillas, and
+                  chapati easier to enjoy at home.
+                </p>
+                <ul class="tag-list" aria-label="Technologies">
+                  <li>Product design</li>
+                  <li>AI</li>
+                  <li>User experience</li>
+                </ul>
+              </div>
+            </li>
+          </ol>
         </div>
       </section>
     </main>
 
-    <footer class="site-footer section-width">
-      <p>© 2026 Calvin Hickey</p>
-      <a href="mailto:calvinjhickey@gmail.com">calvinjhickey@gmail.com</a>
-      <a href="https://github.com/00Calvin00" target="_blank" rel="noopener">GitHub ↗</a>
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>© 2026 Calvin Hickey</p>
+        <a href="mailto:calvinjhickey@gmail.com">calvinjhickey@gmail.com</a>
+        <a href="https://github.com/00Calvin00" rel="noopener">GitHub</a>
+      </div>
     </footer>
   </body>
 </html>
