@@ -367,7 +367,7 @@
     transform: scaleX(1);
   }
 
-  /* --- Mobile menu: only takes over once main.js has enhanced the nav --- */
+  /* --- Mobile menu: only takes over when JavaScript is running (html.js, set in js/head.js) --- */
   .menu-toggle {
     display: none;
     place-items: center;
@@ -390,11 +390,11 @@
   }
 
   @media (width <= 720px) {
-    .menu-toggle:not([hidden]) {
+    .js .menu-toggle {
       display: grid;
     }
 
-    .site-nav.is-enhanced .nav-links {
+    .js .site-nav .nav-links {
       position: absolute;
       inset: 100% 0 auto;
       display: none;
@@ -408,24 +408,24 @@
       font-size: var(--text-lg);
     }
 
-    .site-nav.is-enhanced .nav-links a:not(.button) {
+    .js .site-nav .nav-links a:not(.button) {
       display: block;
       padding-block: 14px;
       border-bottom: 1px solid var(--color-line);
     }
 
-    .site-nav.is-enhanced .nav-links .button {
+    .js .site-nav .nav-links .button {
       justify-content: center;
       width: 100%;
       margin-top: 20px;
     }
 
-    .site-nav.is-enhanced [aria-expanded='true'] + .nav-links {
+    .js .site-nav [aria-expanded='true'] + .nav-links {
       display: flex;
     }
 
     /* Without JavaScript the links simply wrap below the logo */
-    .site-nav:not(.is-enhanced) .nav-links {
+    :root:not(.js) .site-nav .nav-links {
       flex-wrap: wrap;
       gap: 8px 18px;
     }

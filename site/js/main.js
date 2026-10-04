@@ -59,9 +59,6 @@ function initMobileMenu() {
   const setOpen = (open) => button.setAttribute('aria-expanded', String(open));
   const isOpen = () => button.getAttribute('aria-expanded') === 'true';
 
-  button.hidden = false;
-  nav.classList.add('is-enhanced');
-
   button.addEventListener('click', () => setOpen(!isOpen()));
 
   nav.addEventListener('click', (event) => {
