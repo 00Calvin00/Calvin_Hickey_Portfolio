@@ -362,6 +362,89 @@
     transform: scaleX(1);
   }
 
+  /* --- Mobile menu: only takes over once main.js has enhanced the nav --- */
+  .menu-toggle {
+    display: none;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--color-line);
+    border-radius: 999px;
+    background: var(--color-surface);
+    font-size: 1.1rem;
+    cursor: pointer;
+  }
+
+  .menu-toggle .icon-close,
+  .menu-toggle[aria-expanded='true'] .icon-open {
+    display: none;
+  }
+
+  .menu-toggle[aria-expanded='true'] .icon-close {
+    display: block;
+  }
+
+  @media (width <= 720px) {
+    .menu-toggle:not([hidden]) {
+      display: grid;
+    }
+
+    .site-nav.is-enhanced .nav-links {
+      position: absolute;
+      inset: 100% 0 auto;
+      display: none;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      padding: 8px var(--gutter) 24px;
+      border-bottom: 1px solid var(--color-line);
+      background: var(--color-bg);
+      background-image: var(--texture);
+      font-size: var(--text-lg);
+    }
+
+    .site-nav.is-enhanced .nav-links a:not(.button) {
+      display: block;
+      padding-block: 14px;
+      border-bottom: 1px solid var(--color-line);
+    }
+
+    .site-nav.is-enhanced .nav-links .button {
+      justify-content: center;
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    .site-nav.is-enhanced [aria-expanded='true'] + .nav-links {
+      display: flex;
+    }
+
+    /* Without JavaScript the links simply wrap below the logo */
+    .site-nav:not(.is-enhanced) .nav-links {
+      flex-wrap: wrap;
+      gap: 8px 18px;
+    }
+
+    .header-inner {
+      flex-wrap: wrap;
+    }
+
+    .theme-toggle {
+      width: 44px;
+      height: 44px;
+      justify-content: center;
+      padding: 0;
+    }
+
+    .theme-toggle span[aria-hidden] {
+      display: none;
+    }
+
+    [data-theme='dark'] .theme-toggle span[aria-hidden] {
+      display: none;
+    }
+  }
+
   /* --- Theme toggle: the accessible name stays "Dark mode"; aria-pressed carries state --- */
   .theme-toggle {
     display: inline-flex;
@@ -1014,6 +1097,13 @@
     color: var(--color-accent);
     background: transparent;
     font-family: var(--font-label);
+  }
+
+  [data-theme='dark'] .menu-toggle {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+    background: transparent;
+    box-shadow: 0 0 10px rgb(57 255 20 / 35%);
   }
 
   [data-theme='dark'] .theme-toggle {

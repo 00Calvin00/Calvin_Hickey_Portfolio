@@ -49,3 +49,35 @@ function initThemeToggle() {
 }
 
 initThemeToggle();
+
+/** Disclosure menu for small screens. Closes on link click, Escape, or a click outside. */
+function initMobileMenu() {
+  const nav = document.querySelector('[data-nav]');
+  const button = nav?.querySelector('.menu-toggle');
+  if (!nav || !button) return;
+
+  const setOpen = (open) => button.setAttribute('aria-expanded', String(open));
+  const isOpen = () => button.getAttribute('aria-expanded') === 'true';
+
+  button.hidden = false;
+  nav.classList.add('is-enhanced');
+
+  button.addEventListener('click', () => setOpen(!isOpen()));
+
+  nav.addEventListener('click', (event) => {
+    if (event.target.closest('a')) setOpen(false);
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && isOpen()) {
+      setOpen(false);
+      button.focus();
+    }
+  });
+
+  document.addEventListener('click', (event) => {
+    if (isOpen() && !nav.contains(event.target)) setOpen(false);
+  });
+}
+
+initMobileMenu();
