@@ -7,10 +7,28 @@
       name="description"
       content="The personal portfolio of Calvin Hickey, an aspiring full-stack developer."
     />
+    <meta name="theme-color" content="#f5f2eb" />
+    <script>
+      // Apply the saved (or system) theme before first paint so the page never
+      // flashes the wrong colors. js/main.js handles the toggle after load.
+      (() => {
+        let theme = null;
+        try {
+          theme = localStorage.getItem('theme');
+        } catch {
+          // Storage can be blocked (private mode, strict settings); fall back to the system.
+        }
+        if (theme !== 'light' && theme !== 'dark') {
+          theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        document.documentElement.dataset.theme = theme;
+      })();
+    </script>
     <title>Calvin Hickey | Aspiring Full-Stack Developer</title>
     <link rel="preload" href="fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="fonts/inter.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="css/styles.css" />
+    <script type="module" src="js/main.js"></script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -28,11 +46,21 @@
             </li>
           </ul>
         </nav>
+        <button class="theme-toggle" type="button" aria-pressed="false" data-theme-toggle>
+          <svg class="icon when-light" aria-hidden="true">
+            <use href="img/icons.svg#moon"></use>
+          </svg>
+          <svg class="icon when-dark" aria-hidden="true"><use href="img/icons.svg#sun"></use></svg>
+          <span class="visually-hidden">Dark mode</span>
+          <span class="when-light" aria-hidden="true">Lights off</span>
+          <span class="when-dark" aria-hidden="true">Lights on</span>
+        </button>
       </div>
     </header>
 
     <main id="main">
       <section class="container hero" id="top" aria-labelledby="hero-title">
+        <span class="hero-tag" aria-hidden="true">Calvin</span>
         <div>
           <p class="eyebrow">Hello, I’m Calvin</p>
           <h1 id="hero-title">Building useful things for <em>curious</em> people.</h1>

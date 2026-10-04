@@ -4,7 +4,7 @@
  * Cascade layers keep specificity predictable: later layers win regardless
  * of selector weight, so theme overrides never need !important.
  */
-@layer tokens, base, layout, components, utilities;
+@layer tokens, base, layout, components, themes, utilities;
 
 /* ===== Fonts (self-hosted, Latin subset; see site/fonts/*-OFL.txt) ===== */
 @font-face {
@@ -29,6 +29,23 @@
   font-weight: 100 900;
   font-display: swap;
   src: url('../fonts/inter.woff2') format('woff2');
+}
+
+/* Dark theme only: browsers skip these downloads until a dark-theme rule uses them */
+@font-face {
+  font-family: Anton;
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/anton.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Permanent Marker';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/permanent-marker.woff2') format('woff2');
 }
 
 /* ===== Tokens: every color, font and size the site uses ===== */
@@ -77,6 +94,40 @@
     /* Faint paper grain, drawn with an SVG noise filter */
     --texture: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.1 0 0 0 0 0.08 0 0 0 0.06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
+
+  /*
+   * Dark theme: neon tubes and spray paint on a concrete wall, matching the
+   * banner on github.com/00Calvin00. The theme is resolved by an inline
+   * script in <head>, so it only needs this one selector.
+   */
+  :root[data-theme='dark'] {
+    color-scheme: dark;
+
+    --color-bg: #050805;
+    --color-surface: #0c120c;
+    --color-ink: #e8f5e3;
+    --color-ink-muted: #a7bfa2;
+    --color-line: rgb(57 255 20 / 18%);
+    --color-accent: #39ff14;
+    --color-accent-text: #39ff14;
+    --color-on-accent: #050805;
+    --color-neon-core: #eaffe0;
+    --color-pink: #ff4fa0;
+    --color-cyan: #22e6ff;
+    --color-tint-1: #0b2326;
+    --color-tint-2: #26091a;
+    --color-tint-3: #0f210b;
+    --color-focus: #ff4fa0;
+    --font-display: 'Anton', impact, 'Arial Narrow Bold', sans-serif;
+    --font-tag: 'Permanent Marker', 'Comic Sans MS', cursive;
+    --font-label: ui-monospace, 'SFMono-Regular', 'Courier New', monospace;
+    --glow-green:
+      0 0 4px var(--color-neon-core), 0 0 12px var(--color-accent), 0 0 32px var(--color-accent),
+      0 0 64px rgb(57 255 20 / 45%);
+    --glow-pink: 0 0 6px rgb(255 79 160 / 90%), 0 0 22px rgb(255 79 160 / 60%);
+    --texture: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.85 0 0 0 0 0.95 0 0 0 0 0.85 0 0 0 0.07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    --drips: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 24' preserveAspectRatio='none'%3E%3Cpath fill='%23ff4fa0' d='M0 0h120v4c-3 0-4 2-4 5s-2 4-3 0-1-5-5-5H88c-2 0-2 3-2 9s-3 6-3 0 0-9-3-9H52c-3 0-3 2-3 4s-2 3-2 0-1-4-4-4H20c-2 0-3 3-3 12s-3 9-3 0-1-12-4-12H0z'/%3E%3C/svg%3E");
+  }
 }
 
 /* ===== Base: element defaults ===== */
@@ -102,6 +153,9 @@
     font-size: var(--text-md);
     line-height: 1.65;
     -webkit-font-smoothing: antialiased;
+
+    /* Decorative layers may bleed past the edge; never let them cause sideways scroll */
+    overflow-x: clip;
   }
 
   a {
@@ -308,6 +362,42 @@
     transform: scaleX(1);
   }
 
+  /* --- Theme toggle: the accessible name stays "Dark mode"; aria-pressed carries state --- */
+  .theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    border: 1px solid var(--color-line);
+    border-radius: 999px;
+    background: var(--color-surface);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    cursor: pointer;
+    transition:
+      border-color var(--duration),
+      box-shadow var(--duration);
+  }
+
+  .theme-toggle:hover {
+    border-color: var(--color-ink);
+  }
+
+  .theme-toggle .when-dark,
+  [data-theme='dark'] .theme-toggle .when-light {
+    display: none;
+  }
+
+  [data-theme='dark'] .theme-toggle .when-dark {
+    display: inline;
+  }
+
+  [data-theme='dark'] .theme-toggle .icon.when-dark {
+    display: block;
+  }
+
   /* --- Buttons and links --- */
   .button {
     display: inline-flex;
@@ -402,11 +492,32 @@
 
   /* --- Hero --- */
   .hero {
+    position: relative;
     display: grid;
     grid-template-columns: minmax(0, 1.5fr) minmax(240px, 0.75fr);
     gap: clamp(40px, 7vw, 96px);
     align-items: center;
     padding-block: clamp(56px, 9vw, 120px) clamp(72px, 10vw, 136px);
+  }
+
+  /* Giant spray-painted tag behind the hero; shown only in the dark theme */
+  .hero-tag {
+    display: none;
+    position: absolute;
+    top: 4%;
+    right: 18%;
+    z-index: -1;
+    color: rgb(255 79 160 / 16%);
+    font-family: var(--font-tag, cursive);
+    font-size: clamp(7rem, 22vw, 18rem);
+    line-height: 1;
+    white-space: nowrap;
+    text-shadow:
+      0 0 18px rgb(255 79 160 / 35%),
+      0 0 60px rgb(255 79 160 / 20%);
+    transform: rotate(-9deg);
+    pointer-events: none;
+    user-select: none;
   }
 
   .hero h1 {
@@ -637,6 +748,285 @@
     .project-card:nth-child(even) .project-media {
       order: 0;
     }
+  }
+}
+
+/* ===== Themes: dark "neon and spray paint" overrides ===== */
+@layer themes {
+  [data-theme='dark'] body {
+    transition: background-color 300ms;
+  }
+
+  /* Wall: concrete grain, CRT scanlines and two colored light spills.
+     A fixed pseudo-element avoids the repaint cost of background-attachment: fixed. */
+  [data-theme='dark'] body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      radial-gradient(60rem 40rem at 90% -10%, rgb(255 79 160 / 13%), transparent 60%),
+      radial-gradient(50rem 40rem at -10% 110%, rgb(57 255 20 / 9%), transparent 60%),
+      repeating-linear-gradient(to bottom, rgb(57 255 20 / 3.5%) 0 1px, transparent 1px 4px);
+  }
+
+  [data-theme='dark'] h1,
+  [data-theme='dark'] h2,
+  [data-theme='dark'] h3 {
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    line-height: 0.98;
+    text-transform: uppercase;
+  }
+
+  /* Emphasis becomes a hand-sprayed pink tag over the neon lettering */
+  [data-theme='dark'] h1 em,
+  [data-theme='dark'] h2 em {
+    display: inline-block;
+    color: var(--color-pink);
+    font-family: var(--font-tag);
+    font-size: 0.82em;
+    font-style: normal;
+    text-shadow: var(--glow-pink);
+    text-transform: none;
+    transform: rotate(-4deg) translateY(-0.04em);
+  }
+
+  [data-theme='dark'] .hero h1 {
+    color: var(--color-neon-core);
+    font-variation-settings: normal;
+    letter-spacing: 0.01em;
+    text-shadow: var(--glow-green);
+    transform: skewX(-6deg);
+    animation: tube-warmup 2.4s ease-out 1 both;
+  }
+
+  /* One-time fluorescent "warming up" flicker, then steady (from the GitHub banner) */
+  @keyframes tube-warmup {
+    0% {
+      opacity: 0;
+    }
+
+    8% {
+      opacity: 0.9;
+    }
+
+    11% {
+      opacity: 0.1;
+    }
+
+    18% {
+      opacity: 0.8;
+    }
+
+    21% {
+      opacity: 0.2;
+    }
+
+    30%,
+    40%,
+    100% {
+      opacity: 1;
+    }
+
+    34% {
+      opacity: 0.4;
+    }
+  }
+
+  [data-theme='dark'] .hero-tag {
+    display: block;
+  }
+
+  [data-theme='dark'] .eyebrow {
+    color: var(--color-pink);
+    font-family: var(--font-tag);
+    font-size: 1.15rem;
+    font-weight: 400;
+    letter-spacing: 0;
+    text-shadow: var(--glow-pink);
+    text-transform: none;
+  }
+
+  [data-theme='dark'] .section-label {
+    position: relative;
+    align-self: start;
+    padding-bottom: 14px;
+    color: var(--color-ink);
+    font-family: var(--font-tag);
+    font-size: 1.05rem;
+    font-weight: 400;
+    letter-spacing: 0;
+    text-transform: none;
+    transform: rotate(-3deg);
+  }
+
+  [data-theme='dark'] .section-label span {
+    color: var(--color-accent);
+    text-shadow: var(--glow-green);
+  }
+
+  /* Paint drips running off the section label */
+  [data-theme='dark'] .section-label::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: min(150px, 100%);
+    height: 16px;
+    background: var(--drips) no-repeat;
+    background-size: 100% 100%;
+    opacity: 0.85;
+  }
+
+  [data-theme='dark'] .logo {
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    text-shadow: var(--glow-green);
+  }
+
+  [data-theme='dark'] .logo span {
+    color: var(--color-pink);
+    text-shadow: var(--glow-pink);
+  }
+
+  [data-theme='dark'] .site-header {
+    border-bottom-color: var(--color-line);
+  }
+
+  [data-theme='dark'] .nav-links a:not(.button)::after {
+    background: var(--color-pink);
+    box-shadow: var(--glow-pink);
+  }
+
+  /* Stenciled neon buttons */
+  [data-theme='dark'] .button {
+    border-color: var(--color-accent);
+    border-radius: 0;
+    color: var(--color-accent);
+    background: transparent;
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    box-shadow:
+      0 0 12px rgb(57 255 20 / 35%),
+      inset 0 0 12px rgb(57 255 20 / 20%);
+  }
+
+  [data-theme='dark'] .button:hover {
+    color: var(--color-on-accent);
+    background: var(--color-accent);
+    box-shadow: 0 0 28px rgb(57 255 20 / 70%);
+  }
+
+  [data-theme='dark'] .button-small {
+    font-size: 0.85rem;
+  }
+
+  [data-theme='dark'] .text-link {
+    color: var(--color-accent);
+  }
+
+  [data-theme='dark'] .text-link:hover {
+    color: var(--color-pink);
+  }
+
+  [data-theme='dark'] .hero-portrait::before {
+    border: 2px solid var(--color-pink);
+    background: transparent;
+    box-shadow:
+      var(--glow-pink),
+      inset 0 0 18px rgb(255 79 160 / 35%);
+  }
+
+  [data-theme='dark'] .hero-portrait img {
+    filter: contrast(1.08) saturate(1.1);
+  }
+
+  [data-theme='dark'] .hero-portrait figcaption {
+    color: var(--color-accent);
+    font-family: var(--font-label);
+  }
+
+  [data-theme='dark'] .about-copy strong {
+    color: var(--color-accent);
+  }
+
+  [data-theme='dark'] .skill-group {
+    border-top-color: var(--color-accent);
+    box-shadow: 0 -8px 16px -12px var(--color-accent);
+  }
+
+  [data-theme='dark'] .skill-group h3 {
+    font-size: 1.7rem;
+  }
+
+  /* HUD corner brackets framing project media, like the banner */
+  [data-theme='dark'] .project-media {
+    border: 1px solid var(--color-line);
+    border-radius: 0;
+  }
+
+  [data-theme='dark'] .project-media::after {
+    content: '';
+    position: absolute;
+    inset: 10px;
+    pointer-events: none;
+    background:
+      linear-gradient(var(--color-accent), var(--color-accent)) top left / 22px 2px,
+      linear-gradient(var(--color-accent), var(--color-accent)) top left / 2px 22px,
+      linear-gradient(var(--color-accent), var(--color-accent)) top right / 22px 2px,
+      linear-gradient(var(--color-accent), var(--color-accent)) top right / 2px 22px,
+      linear-gradient(var(--color-accent), var(--color-accent)) bottom left / 22px 2px,
+      linear-gradient(var(--color-accent), var(--color-accent)) bottom left / 2px 22px,
+      linear-gradient(var(--color-accent), var(--color-accent)) bottom right / 22px 2px,
+      linear-gradient(var(--color-accent), var(--color-accent)) bottom right / 2px 22px;
+    background-repeat: no-repeat;
+    filter: drop-shadow(0 0 4px var(--color-accent));
+  }
+
+  [data-theme='dark'] .project-media img {
+    opacity: 0.88;
+  }
+
+  [data-theme='dark'] .project-number {
+    border: 1px solid var(--color-accent);
+    border-radius: 0;
+    color: var(--color-accent);
+    background: var(--color-bg);
+    font-family: var(--font-label);
+  }
+
+  [data-theme='dark'] .project-art {
+    color: var(--color-pink);
+    font-family: var(--font-tag);
+    font-style: normal;
+    text-shadow: var(--glow-pink);
+    transform: rotate(-6deg);
+  }
+
+  [data-theme='dark'] .tag-list li {
+    border-color: var(--color-line);
+    border-radius: 0;
+    color: var(--color-accent);
+    background: transparent;
+    font-family: var(--font-label);
+  }
+
+  [data-theme='dark'] .theme-toggle {
+    border-color: var(--color-pink);
+    color: var(--color-pink);
+    background: transparent;
+    font-family: var(--font-label);
+    box-shadow: var(--glow-pink);
+  }
+
+  [data-theme='dark'] ::selection {
+    color: var(--color-bg);
+    background: var(--color-pink);
   }
 }
 
