@@ -82,6 +82,35 @@ function initMobileMenu() {
 
 initMobileMenu();
 
+/** Fade sections in as they scroll into view. Skipped entirely for reduced motion. */
+function initScrollReveal() {
+  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reducedMotion || !('IntersectionObserver' in window)) return;
+
+  const targets = document.querySelectorAll(
+    '.section-header, .timeline-item, .project-card, .mini-card, .skill-group, .interest, .groove',
+  );
+  const observer = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    },
+    { rootMargin: '0px 0px -10% 0px' },
+  );
+
+  for (const target of targets) {
+    target.classList.add('reveal');
+    observer.observe(target);
+  }
+  // Added last, so content is only hidden once the observer is watching it
+  document.documentElement.classList.add('reveal-ready');
+}
+
+initScrollReveal();
+
 /** Keep the footer copyright year current without editing the HTML each January. */
 for (const el of document.querySelectorAll('[data-year]')) {
   el.textContent = String(new Date().getFullYear());

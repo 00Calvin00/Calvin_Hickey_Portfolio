@@ -1,0 +1,106 @@
+<!doctype html>
+<!--
+  Source for site/img/og-image.png (the link-preview image for social sites).
+  To regenerate: open this file in a browser at a 1200x630 viewport and take
+  a screenshot, or use any headless-browser screenshot tool.
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>OG image source</title>
+    <style>
+      @font-face {
+        font-family: Anton;
+        src: url('../site/fonts/anton.woff2') format('woff2');
+      }
+
+      @font-face {
+        font-family: 'Permanent Marker';
+        src: url('../site/fonts/permanent-marker.woff2') format('woff2');
+      }
+
+      html,
+      body {
+        width: 1200px;
+        height: 630px;
+        margin: 0;
+      }
+
+      body {
+        position: relative;
+        display: grid;
+        place-content: center;
+        overflow: hidden;
+        background:
+          radial-gradient(40rem 30rem at 90% -10%, rgb(255 79 160 / 22%), transparent 60%),
+          radial-gradient(40rem 30rem at -10% 110%, rgb(57 255 20 / 14%), transparent 60%),
+          repeating-linear-gradient(to bottom, rgb(57 255 20 / 5%) 0 1px, transparent 1px 4px),
+          #050805;
+        text-align: center;
+      }
+
+      .tag {
+        position: absolute;
+        top: 40px;
+        right: 70px;
+        color: rgb(255 79 160 / 18%);
+        font-family: 'Permanent Marker', cursive;
+        font-size: 260px;
+        transform: rotate(-9deg);
+      }
+
+      h1 {
+        position: relative;
+        margin: 0;
+        color: #eaffe0;
+        font-family: Anton, impact, sans-serif;
+        font-size: 150px;
+        font-weight: 400;
+        letter-spacing: 2px;
+        line-height: 1;
+        text-shadow:
+          0 0 4px #eaffe0,
+          0 0 14px #39ff14,
+          0 0 36px #39ff14,
+          0 0 70px rgb(57 255 20 / 50%);
+        transform: skewX(-6deg);
+      }
+
+      p {
+        position: relative;
+        margin: 28px 0 0;
+        color: #39ff14;
+        font:
+          700 34px 'Courier New',
+          monospace;
+        text-shadow: 0 0 10px rgb(57 255 20 / 70%);
+      }
+
+      .role {
+        margin-top: 18px;
+        color: #ff4fa0;
+        font-family: 'Permanent Marker', cursive;
+        font-size: 36px;
+        font-weight: 400;
+        text-shadow: 0 0 12px rgb(255 79 160 / 70%);
+      }
+
+      .corner {
+        position: absolute;
+        width: 44px;
+        height: 44px;
+        border: 0 solid rgb(57 255 20 / 70%);
+      }
+    </style>
+  </head>
+  <body>
+    <span class="tag">Calvin</span>
+    <span class="corner" style="top: 36px; left: 36px; border-width: 4px 0 0 4px"></span>
+    <span class="corner" style="top: 36px; right: 36px; border-width: 4px 4px 0 0"></span>
+    <span class="corner" style="bottom: 36px; left: 36px; border-width: 0 0 4px 4px"></span>
+    <span class="corner" style="right: 36px; bottom: 36px; border-width: 0 4px 4px 0"></span>
+    <h1>CALVIN HICKEY</h1>
+    <p>let's build things that help people</p>
+    <p class="role">Software engineer · Product &amp; design</p>
+  </body>
+</html>

@@ -8,23 +8,62 @@
       content="Calvin Hickey is a software engineer working across product and design: React platforms, embedded voice interfaces and accessible UX. B.S. Software Development, University of Utah, December 2026."
     />
     <meta name="theme-color" content="#f5f2eb" />
-    <script>
-      // Apply the saved (or system) theme before first paint so the page never
-      // flashes the wrong colors. js/main.js handles the toggle after load.
-      (() => {
-        let theme = null;
-        try {
-          theme = localStorage.getItem('theme');
-        } catch {
-          // Storage can be blocked (private mode, strict settings); fall back to the system.
-        }
-        if (theme !== 'light' && theme !== 'dark') {
-          theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-        }
-        document.documentElement.dataset.theme = theme;
-      })();
-    </script>
+    <!-- Blocking on purpose: sets the theme before first paint so there is no flash -->
+    <script src="js/theme-init.js"></script>
     <title>Calvin Hickey | Software Engineer, Product &amp; Design</title>
+    <link rel="canonical" href="https://00calvin00.github.io/Calvin_Hickey_Portfolio/" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://00calvin00.github.io/Calvin_Hickey_Portfolio/" />
+    <meta property="og:title" content="Calvin Hickey | Software Engineer, Product &amp; Design" />
+    <meta
+      property="og:description"
+      content="Let’s build things that help people. React platforms, embedded voice interfaces and accessible UX."
+    />
+    <meta
+      property="og:image"
+      content="https://00calvin00.github.io/Calvin_Hickey_Portfolio/img/og-image.png"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Neon sign reading Calvin Hickey: let’s build things that help people"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Calvin Hickey",
+        "url": "https://00calvin00.github.io/Calvin_Hickey_Portfolio/",
+        "image": "https://00calvin00.github.io/Calvin_Hickey_Portfolio/img/portrait-800.jpg",
+        "jobTitle": "Software Engineer",
+        "description": "Software engineer working across product and design.",
+        "alumniOf": { "@type": "CollegeOrUniversity", "name": "University of Utah" },
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Salt Lake City",
+          "addressRegion": "UT",
+          "addressCountry": "US"
+        },
+        "knowsAbout": [
+          "React",
+          "Python",
+          "Accessibility",
+          "Voice user interfaces",
+          "Embedded systems"
+        ],
+        "sameAs": [
+          "https://www.linkedin.com/in/calvin-hickey-3780a1312/",
+          "https://github.com/00Calvin00"
+        ]
+      }
+    </script>
+
     <link rel="preload" href="fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="fonts/inter.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="css/styles.css" />
