@@ -31,7 +31,8 @@
   src: url('../fonts/inter.woff2') format('woff2');
 }
 
-/* Dark theme only: browsers skip these downloads until a dark-theme rule uses them */
+/* Mostly dark theme: browsers skip these downloads until a rule uses them
+   (Permanent Marker also hand-letters the About collage captions in both themes) */
 @font-face {
   font-family: Anton;
   font-style: normal;
@@ -739,15 +740,30 @@
     writing-mode: vertical-rl;
   }
 
-  /* --- About --- */
+  /* --- About ---
+     The scrapbook photos are grid items too, scattered around the text by named area */
   .about-body {
     display: grid;
-    grid-template-columns: minmax(140px, 1fr) 3fr;
+    grid-template-areas:
+      'rec copy copy'
+      'climbing copy copy'
+      'drums cosplay camera';
+    grid-template-columns: minmax(140px, 1fr) 1.5fr 1.5fr;
     gap: 48px;
   }
 
+  @media (width > 1080px) {
+    .about-body {
+      grid-template-areas:
+        'rec copy drums'
+        'climbing copy camera'
+        'climbing cosplay camera';
+      grid-template-columns: minmax(180px, 1fr) minmax(0, 2.6fr) minmax(200px, 1fr);
+    }
+  }
+
   .about-copy {
-    grid-column: 2;
+    grid-area: copy;
     max-width: 62ch;
     color: var(--color-ink-muted);
     font-size: var(--text-lg);
@@ -759,8 +775,7 @@
   }
 
   .recognition {
-    grid-row: 1;
-    grid-column: 1;
+    grid-area: rec;
     align-self: start;
     padding: 20px;
     border: 1px solid var(--color-line);
@@ -1230,6 +1245,112 @@
     object-fit: cover;
   }
 
+  /* --- About scrapbook: photos on torn paper, taped on (chained up in the dark theme).
+     Each photo picks its grid area in .about-body; --drop staggers them vertically. --- */
+  .collage-item {
+    --tilt: -3deg;
+    --tape-tilt: -4deg;
+    --drop: 0px;
+
+    position: relative;
+    align-self: start;
+    width: min(100%, 200px);
+    margin-top: var(--drop);
+    transform: rotate(var(--tilt));
+    transition: transform 300ms var(--ease-out);
+  }
+
+  .collage-drums {
+    grid-area: drums;
+    justify-self: end;
+  }
+
+  .collage-climbing {
+    --tilt: 2.5deg;
+    --tape-tilt: 6deg;
+    --drop: 24px;
+
+    grid-area: climbing;
+    justify-self: center;
+    width: min(100%, 190px);
+  }
+
+  .collage-cosplay {
+    --tilt: -1.5deg;
+    --tape-tilt: -2deg;
+    --drop: 8px;
+
+    grid-area: cosplay;
+    justify-self: center;
+    width: min(100%, 300px);
+  }
+
+  .collage-camera {
+    --tilt: 3.5deg;
+    --tape-tilt: 3deg;
+    --drop: 40px;
+
+    grid-area: camera;
+    justify-self: start;
+    width: min(100%, 210px);
+  }
+
+  .collage-item:hover {
+    transform: rotate(0) translateY(-4px);
+  }
+
+  /* The filter shadow follows the torn paper shape instead of a rectangle */
+  .collage-photo {
+    position: relative;
+    margin: 0;
+    padding: 12px 12px 0;
+    filter: drop-shadow(0 10px 12px rgb(24 35 31 / 28%));
+  }
+
+  /* Torn paper: the mask is inline because mask images are fetched with CORS, and a data URI never fails it */
+  .collage-photo::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: #fffdf8;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0 0L3.8 2.8L7.7 0.9L11.5 0.6L15.4 2.2L19.2 1.6L23.1 1L26.9 2.3L30.8 2.3L34.6 1.6L38.5 2.1L42.3 1.9L46.2 2.5L50 0.7L53.8 1.1L57.7 2.1L61.5 2.1L65.4 0.2L69.2 2.1L73.1 1.4L76.9 2.8L80.8 2.4L84.6 0.4L88.5 1.5L92.3 2.8L96.2 2.1L100 1.9L98.3 3.8L97.3 7.7L97.3 11.5L98.9 15.4L99 19.2L97.5 23.1L99 26.9L99.5 30.8L99.1 34.6L98.7 38.5L99.1 42.3L97.2 46.2L98.3 50L97.8 53.8L97.4 57.7L99.8 61.5L99.2 65.4L98.3 69.2L98.5 73.1L98.7 76.9L99.4 80.8L97.3 84.6L99.8 88.5L98.9 92.3L99 96.2L98 100L96.2 97.2L92.3 98.5L88.5 99.5L84.6 98.8L80.8 99.1L76.9 98.9L73.1 98.7L69.2 99L65.4 98.4L61.5 98.2L57.7 99.3L53.8 97.3L50 98.6L46.2 97.4L42.3 98.1L38.5 98.1L34.6 98.5L30.8 98.5L26.9 97.9L23.1 97.2L19.2 98.8L15.4 97.9L11.5 99.2L7.7 98.2L3.8 98.9L0 99L1.2 96.2L2.4 92.3L2.6 88.5L0.3 84.6L2.5 80.8L0.2 76.9L1.2 73.1L0.5 69.2L0.2 65.4L3 61.5L0.7 57.7L1.9 53.8L0.4 50L1.4 46.2L1.8 42.3L0.4 38.5L2.8 34.6L2.7 30.8L2.7 26.9L2.7 23.1L2.7 19.2L2.3 15.4L0.8 11.5L0 7.7L0.7 3.8Z'/%3E%3C/svg%3E")
+      center / 100% 100% no-repeat;
+  }
+
+  /* Mirror some sheets so no two torn edges match */
+  .collage-climbing .collage-photo::before,
+  .collage-camera .collage-photo::before {
+    scale: -1 1;
+  }
+
+  .collage-photo::after {
+    content: '';
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    width: 84px;
+    height: 24px;
+    background: rgb(233 105 61 / 28%);
+    transform: translateX(-50%) rotate(var(--tape-tilt));
+  }
+
+  .collage-photo figcaption {
+    padding: 10px 4px 16px;
+    color: #2b2b2b;
+    font-family: 'Permanent Marker', 'Comic Sans MS', cursive;
+    font-size: 1.05rem;
+    line-height: 1.2;
+    text-align: center;
+  }
+
+  @media (width <= 720px) {
+    .collage-item {
+      justify-self: center;
+      width: 100%;
+    }
+  }
+
   /* --- Drum groove sequencer --- */
   .groove {
     margin-top: clamp(56px, 8vw, 96px);
@@ -1500,13 +1621,13 @@
     }
 
     .about-body {
-      grid-template-columns: 1fr;
-    }
-
-    .about-copy,
-    .recognition {
-      grid-row: auto;
-      grid-column: 1;
+      grid-template-areas:
+        'copy copy'
+        'rec rec'
+        'drums climbing'
+        'cosplay camera';
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 40px 18px;
     }
 
     .timeline-item,
@@ -1975,6 +2096,54 @@
 
   [data-theme='dark'] .interest-games:hover::after {
     opacity: 1;
+  }
+
+  /* Collage: dimmer paper, and the tape swapped for chains hanging from above */
+  [data-theme='dark'] .collage-item {
+    margin-top: calc(var(--drop) + 90px);
+  }
+
+  [data-theme='dark'] .collage-photo::before {
+    background: #d8d3c6;
+  }
+
+  [data-theme='dark'] .collage-photo::after {
+    display: none;
+  }
+
+  [data-theme='dark'] .collage-item::before,
+  [data-theme='dark'] .collage-item::after {
+    content: '';
+    position: absolute;
+    bottom: calc(100% - 20px);
+    z-index: 1;
+    width: 14px;
+    height: 120px;
+    background: url('../img/chain.svg') center bottom / 14px 24px repeat-y;
+    filter: drop-shadow(0 0 3px rgb(255 79 160 / 60%));
+    transform-origin: bottom center;
+    pointer-events: none;
+  }
+
+  [data-theme='dark'] .collage-item::before {
+    left: 14px;
+    transform: rotate(22deg);
+  }
+
+  [data-theme='dark'] .collage-item::after {
+    right: 14px;
+    transform: rotate(-22deg);
+  }
+
+  @media (width <= 720px) {
+    [data-theme='dark'] .collage-item {
+      margin-top: calc(var(--drop) + 70px);
+    }
+
+    [data-theme='dark'] .collage-item::before,
+    [data-theme='dark'] .collage-item::after {
+      height: 84px;
+    }
   }
 
   [data-theme='dark'] .contact h2 {

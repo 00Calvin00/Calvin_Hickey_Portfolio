@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 24" width="14" height="24">
+  <!-- One repeating chain tile: an upright link, then half of a side-on link at each end -->
+  <ellipse cx="7" cy="12" rx="4.6" ry="7.6" fill="none" stroke="#5f6866" stroke-width="2.6" />
+  <ellipse cx="7" cy="12" rx="4.6" ry="7.6" fill="none" stroke="#c9d1ce" stroke-width="1.1" />
+  <rect x="5.6" y="17" width="2.8" height="10" rx="1.4" fill="#8e9895" />
+  <rect x="5.6" y="-3" width="2.8" height="10" rx="1.4" fill="#8e9895" />
+  <rect x="6.4" y="18" width="0.9" height="6" fill="#dfe6e3" />
+  <rect x="6.4" y="0" width="0.9" height="6" fill="#dfe6e3" />
+</svg>
