@@ -116,6 +116,15 @@
             React features for a platform thousands of University of Utah students use, and this
             summer I led the software for an AI-powered kitchen appliance in Lishui, China.
           </p>
+          <!-- Same switcher on index, photography and drums; move aria-current to match the page -->
+          <nav class="mode-switch" aria-label="Sections of the site">
+            <p>What are you here for?</p>
+            <ul>
+              <li><a href="./" aria-current="page">Engineering</a></li>
+              <li><a href="photography.html">Photography</a></li>
+              <li><a href="drums.html">Drums</a></li>
+            </ul>
+          </nav>
           <p class="status">
             <span class="status-dot" aria-hidden="true"></span>
             Open to full-time roles starting December 2026
@@ -745,6 +754,14 @@
               </p>
             </li>
             <li class="interest">
+              <svg class="icon" aria-hidden="true"><use href="img/icons.svg#camera"></use></svg>
+              <h3>Photography</h3>
+              <p>
+                Usually behind the camera instead of in front of it.
+                <a href="photography.html">See my photos</a>.
+              </p>
+            </li>
+            <li class="interest">
               <svg class="icon" aria-hidden="true"><use href="img/icons.svg#people"></use></svg>
               <h3>People &amp; community</h3>
               <p>
@@ -788,7 +805,8 @@
               <p>
                 I taught 40+ students ages 5 to 56 for the past 3 years and am currently studying
                 myself under Kelly Wallis.
-                <a href="#groove">Play a groove I wrote</a>.
+                <a href="#groove">Play a groove I wrote</a>, or
+                <a href="drums.html">hear me play</a>.
               </p>
             </li>
           </ul>

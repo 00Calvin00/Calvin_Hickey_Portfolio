@@ -31,6 +31,13 @@
   src: url('../fonts/inter.woff2') format('woff2');
 }
 
+/* Cross-fade between pages (and slide the switcher pill) where browsers support it */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+}
+
 /* Mostly dark theme: browsers skip these downloads until a rule uses them
    (Permanent Marker also hand-letters the About collage captions in both themes) */
 @font-face {
@@ -577,6 +584,60 @@
     margin-bottom: 0;
     font-size: var(--text-h2);
     letter-spacing: -0.02em;
+  }
+
+  /* --- "What are you here for?" switcher under the intro, linking the three pages --- */
+  .mode-switch {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 16px;
+    margin-block: 8px 28px;
+  }
+
+  .mode-switch p {
+    margin: 0;
+    color: var(--color-ink-muted);
+    font-size: var(--text-sm);
+  }
+
+  .mode-switch ul {
+    display: flex;
+    gap: 4px;
+    margin: 0;
+    padding: 4px;
+    border: 1px solid var(--color-line);
+    border-radius: 999px;
+    background: var(--color-surface);
+    list-style: none;
+  }
+
+  .mode-switch a {
+    display: block;
+    padding: 8px 18px;
+    border-radius: 999px;
+    color: var(--color-ink);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    text-decoration: none;
+    transition: background var(--duration) var(--ease-out);
+  }
+
+  .mode-switch a:hover {
+    background: var(--color-tint-2);
+  }
+
+  /* The filled pill; named so it slides between pages during the view transition */
+  .mode-switch a[aria-current='page'] {
+    background: var(--color-ink);
+    color: var(--color-bg);
+    view-transition-name: mode-indicator;
+  }
+
+  @media (width <= 420px) {
+    .mode-switch a {
+      padding-inline: 12px;
+    }
   }
 
   /* --- Hero --- */
@@ -1531,6 +1592,12 @@
     right: 8%;
   }
 
+  /* Placeholder pages (photography, drums) reuse the 404 layout, minus the full-screen height */
+  .coming-soon {
+    min-height: 0;
+    padding-block: clamp(56px, 10vw, 136px);
+  }
+
   /* --- Scroll reveal: only hides content once main.js has confirmed it can reveal it --- */
   @media (prefers-reduced-motion: no-preference) {
     .reveal-ready .reveal {
@@ -1845,6 +1912,32 @@
   [data-theme='dark'] .hero-portrait figcaption {
     color: var(--color-accent);
     font-family: var(--font-label);
+  }
+
+  /* Switcher: a pink neon tube with the current page lit up green */
+  [data-theme='dark'] .mode-switch p {
+    font-family: var(--font-label);
+  }
+
+  [data-theme='dark'] .mode-switch ul {
+    border-color: var(--color-pink);
+    background: transparent;
+    box-shadow: var(--glow-pink);
+  }
+
+  [data-theme='dark'] .mode-switch a {
+    font-family: var(--font-label);
+    text-transform: uppercase;
+  }
+
+  [data-theme='dark'] .mode-switch a:hover {
+    background: rgb(255 79 160 / 18%);
+  }
+
+  [data-theme='dark'] .mode-switch a[aria-current='page'] {
+    background: var(--color-accent);
+    color: var(--color-bg);
+    box-shadow: 0 0 12px var(--color-accent);
   }
 
   [data-theme='dark'] .about-copy strong {
