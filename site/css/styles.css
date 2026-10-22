@@ -1224,6 +1224,7 @@
 
   .interest-photo {
     width: calc(100% + 22px);
+    max-width: none;
     margin: -14px -11px 16px;
     aspect-ratio: 4 / 3;
     object-fit: cover;
