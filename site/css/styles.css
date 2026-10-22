@@ -680,6 +680,54 @@
     border-radius: var(--radius);
   }
 
+  /* Two-sided card: clicking spins it on a vertical pivot to reveal the back photo */
+  .portrait-card {
+    display: block;
+    position: relative;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    border-radius: var(--radius);
+    background: none;
+    cursor: pointer;
+    transform-style: preserve-3d;
+  }
+
+  .portrait-face {
+    display: block;
+    backface-visibility: hidden;
+  }
+
+  .portrait-back {
+    position: absolute;
+    inset: 0;
+    transform: rotateY(180deg);
+  }
+
+  .portrait-card.is-spinning {
+    animation: portrait-spin 2.6s ease-in-out;
+  }
+
+  /* Reduced motion: main.js swaps to the back instantly instead of spinning */
+  .portrait-card.is-flipped {
+    transform: rotateY(180deg);
+  }
+
+  @keyframes portrait-spin {
+    0% {
+      transform: perspective(1200px) rotateY(0);
+    }
+
+    30%,
+    70% {
+      transform: perspective(1200px) rotateY(180deg);
+    }
+
+    100% {
+      transform: perspective(1200px) rotateY(360deg);
+    }
+  }
+
   .hero-portrait figcaption {
     position: absolute;
     right: -44px;

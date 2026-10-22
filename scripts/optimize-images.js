@@ -15,6 +15,13 @@ const OUTPUT_DIR = 'site/img';
 // crop: optional aspect ratio [w, h]; position: which part to keep when cropping
 const IMAGES = [
   { src: 'portrait.jpg', name: 'portrait', widths: [400, 800], crop: [4, 5], position: 'centre' },
+  {
+    src: 'portrait-back.jpg',
+    name: 'portrait-back',
+    widths: [400, 800],
+    crop: [4, 5],
+    position: 'centre',
+  },
   { src: 'uguide.png', name: 'uguide', widths: [700, 1400], crop: [16, 10], position: 'top' },
   { src: 'apecoo.png', name: 'apecoo', widths: [700, 1400], crop: [16, 10], position: 'top' },
 ];

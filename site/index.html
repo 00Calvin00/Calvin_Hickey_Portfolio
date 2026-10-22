@@ -129,22 +129,42 @@
           </div>
         </div>
         <figure class="hero-portrait">
-          <picture>
-            <source
-              type="image/webp"
-              srcset="img/portrait-400.webp 400w, img/portrait-800.webp 800w"
-              sizes="(width <= 720px) 78vw, 320px"
-            />
-            <img
-              src="img/portrait-400.jpg"
-              srcset="img/portrait-400.jpg 400w, img/portrait-800.jpg 800w"
-              sizes="(width <= 720px) 78vw, 320px"
-              width="400"
-              height="500"
-              fetchpriority="high"
-              alt="Portrait of Calvin Hickey smiling, wearing a dark sweater in a warmly lit room"
-            />
-          </picture>
+          <!-- Easter egg: main.js spins the card to show the back photo for a moment -->
+          <button type="button" class="portrait-card" data-portrait-card>
+            <picture class="portrait-face">
+              <source
+                type="image/webp"
+                srcset="img/portrait-400.webp 400w, img/portrait-800.webp 800w"
+                sizes="(width <= 720px) 78vw, 320px"
+              />
+              <img
+                src="img/portrait-400.jpg"
+                srcset="img/portrait-400.jpg 400w, img/portrait-800.jpg 800w"
+                sizes="(width <= 720px) 78vw, 320px"
+                width="400"
+                height="500"
+                fetchpriority="high"
+                alt="Portrait of Calvin Hickey smiling, wearing a dark sweater in a warmly lit room"
+              />
+            </picture>
+            <picture class="portrait-face portrait-back">
+              <source
+                type="image/webp"
+                srcset="img/portrait-back-400.webp 400w, img/portrait-back-800.webp 800w"
+                sizes="(width <= 720px) 78vw, 320px"
+              />
+              <img
+                src="img/portrait-back-400.jpg"
+                srcset="img/portrait-back-400.jpg 400w, img/portrait-back-800.jpg 800w"
+                sizes="(width <= 720px) 78vw, 320px"
+                width="400"
+                height="500"
+                loading="lazy"
+                fetchpriority="low"
+                alt=""
+              />
+            </picture>
+          </button>
           <figcaption>Salt Lake City, Utah</figcaption>
         </figure>
       </section>
