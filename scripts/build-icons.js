@@ -22,6 +22,7 @@ const ICONS = [
   ['basketball', 'solid', 'basketball'],
   ['book', 'solid', 'book-open'],
   ['calendar', 'solid', 'calendar-days'],
+  ['camera', 'solid', 'camera'],
   ['code', 'solid', 'code'],
   ['download', 'solid', 'download'],
   ['drum', 'solid', 'drum'],

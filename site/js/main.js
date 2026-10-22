@@ -108,6 +108,30 @@ function initScrollReveal() {
 
 initScrollReveal();
 
+/** Easter egg: clicking the portrait spins it around to show the back photo for a moment. */
+function initPortraitSpin() {
+  const card = document.querySelector('[data-portrait-card]');
+  if (!card) return;
+
+  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+  const isBusy = () =>
+    card.classList.contains('is-spinning') || card.classList.contains('is-flipped');
+
+  card.addEventListener('click', () => {
+    if (isBusy()) return;
+    if (reducedMotion.matches) {
+      card.classList.add('is-flipped');
+      setTimeout(() => card.classList.remove('is-flipped'), 1500);
+    } else {
+      card.classList.add('is-spinning');
+    }
+  });
+
+  card.addEventListener('animationend', () => card.classList.remove('is-spinning'));
+}
+
+initPortraitSpin();
+
 /** Keep the footer copyright year current without editing the HTML each January. */
 for (const el of document.querySelectorAll('[data-year]')) {
   el.textContent = String(new Date().getFullYear());

@@ -116,6 +116,15 @@
             React features for a platform thousands of University of Utah students use, and this
             summer I led the software for an AI-powered kitchen appliance in Lishui, China.
           </p>
+          <!-- Same switcher on index, photography and drums; move aria-current to match the page -->
+          <nav class="mode-switch" aria-label="Sections of the site">
+            <p>What are you here for?</p>
+            <ul>
+              <li><a href="./" aria-current="page">Engineering</a></li>
+              <li><a href="photography.html">Photography</a></li>
+              <li><a href="drums.html">Drums</a></li>
+            </ul>
+          </nav>
           <p class="status">
             <span class="status-dot" aria-hidden="true"></span>
             Open to full-time roles starting December 2026
@@ -129,22 +138,42 @@
           </div>
         </div>
         <figure class="hero-portrait">
-          <picture>
-            <source
-              type="image/webp"
-              srcset="img/portrait-400.webp 400w, img/portrait-800.webp 800w"
-              sizes="(width <= 720px) 78vw, 320px"
-            />
-            <img
-              src="img/portrait-400.jpg"
-              srcset="img/portrait-400.jpg 400w, img/portrait-800.jpg 800w"
-              sizes="(width <= 720px) 78vw, 320px"
-              width="400"
-              height="500"
-              fetchpriority="high"
-              alt="Portrait of Calvin Hickey smiling in front of a dark backdrop"
-            />
-          </picture>
+          <!-- Easter egg: main.js spins the card to show the back photo for a moment -->
+          <button type="button" class="portrait-card" data-portrait-card>
+            <picture class="portrait-face">
+              <source
+                type="image/webp"
+                srcset="img/portrait-400.webp 400w, img/portrait-800.webp 800w"
+                sizes="(width <= 720px) 78vw, 320px"
+              />
+              <img
+                src="img/portrait-400.jpg"
+                srcset="img/portrait-400.jpg 400w, img/portrait-800.jpg 800w"
+                sizes="(width <= 720px) 78vw, 320px"
+                width="400"
+                height="500"
+                fetchpriority="high"
+                alt="Portrait of Calvin Hickey smiling, wearing a dark sweater in a warmly lit room"
+              />
+            </picture>
+            <picture class="portrait-face portrait-back">
+              <source
+                type="image/webp"
+                srcset="img/portrait-back-400.webp 400w, img/portrait-back-800.webp 800w"
+                sizes="(width <= 720px) 78vw, 320px"
+              />
+              <img
+                src="img/portrait-back-400.jpg"
+                srcset="img/portrait-back-400.jpg 400w, img/portrait-back-800.jpg 800w"
+                sizes="(width <= 720px) 78vw, 320px"
+                width="400"
+                height="500"
+                loading="lazy"
+                fetchpriority="low"
+                alt=""
+              />
+            </picture>
+          </button>
           <figcaption>Salt Lake City, Utah</figcaption>
         </figure>
       </section>
@@ -187,6 +216,100 @@
                 <li>Represented the University of Utah at donor dinners</li>
               </ul>
             </aside>
+
+            <!-- Scrapbook photos scattered around the text: taped on, chained up in the dark theme.
+                 Each one's spot in the grid is set by its collage-* class in styles.css. -->
+            <div class="collage-item collage-drums">
+              <figure class="collage-photo">
+                <picture>
+                  <source
+                    type="image/webp"
+                    srcset="img/interest-drums-480.webp 480w, img/interest-drums-960.webp 960w"
+                    sizes="(width <= 720px) 45vw, 200px"
+                  />
+                  <img
+                    src="img/interest-drums-480.jpg"
+                    srcset="img/interest-drums-480.jpg 480w, img/interest-drums-960.jpg 960w"
+                    sizes="(width <= 720px) 45vw, 200px"
+                    width="480"
+                    height="720"
+                    loading="lazy"
+                    decoding="async"
+                    alt="Calvin drumming at Blind Temptress’s first show under blue stage light"
+                  />
+                </picture>
+                <figcaption>Blind Temptress First Show</figcaption>
+              </figure>
+            </div>
+            <div class="collage-item collage-climbing">
+              <figure class="collage-photo">
+                <picture>
+                  <source
+                    type="image/webp"
+                    srcset="
+                      img/interest-climbing-480.webp 480w,
+                      img/interest-climbing-960.webp 960w
+                    "
+                    sizes="(width <= 720px) 45vw, 190px"
+                  />
+                  <img
+                    src="img/interest-climbing-480.jpg"
+                    srcset="img/interest-climbing-480.jpg 480w, img/interest-climbing-960.jpg 960w"
+                    sizes="(width <= 720px) 45vw, 190px"
+                    width="480"
+                    height="640"
+                    loading="lazy"
+                    decoding="async"
+                    alt="Calvin in a blue helmet and harness on a via ferrata above a green mountain valley"
+                  />
+                </picture>
+                <figcaption>via ferrata, China</figcaption>
+              </figure>
+            </div>
+            <div class="collage-item collage-cosplay">
+              <figure class="collage-photo">
+                <picture>
+                  <source
+                    type="image/webp"
+                    srcset="img/interest-cosplay-480.webp 480w, img/interest-cosplay-960.webp 960w"
+                    sizes="(width <= 720px) 45vw, 300px"
+                  />
+                  <img
+                    src="img/interest-cosplay-480.jpg"
+                    srcset="img/interest-cosplay-480.jpg 480w, img/interest-cosplay-960.jpg 960w"
+                    sizes="(width <= 720px) 45vw, 300px"
+                    width="480"
+                    height="320"
+                    loading="lazy"
+                    decoding="async"
+                    alt="Calvin in traditional Chinese costume reading a bamboo scroll at a wooden desk"
+                  />
+                </picture>
+                <figcaption>cosplay in China</figcaption>
+              </figure>
+            </div>
+            <div class="collage-item collage-camera">
+              <figure class="collage-photo">
+                <picture>
+                  <source
+                    type="image/webp"
+                    srcset="img/interest-camera-480.webp 480w, img/interest-camera-960.webp 960w"
+                    sizes="(width <= 720px) 45vw, 210px"
+                  />
+                  <img
+                    src="img/interest-camera-480.jpg"
+                    srcset="img/interest-camera-480.jpg 480w, img/interest-camera-960.jpg 960w"
+                    sizes="(width <= 720px) 45vw, 210px"
+                    width="480"
+                    height="394"
+                    loading="lazy"
+                    decoding="async"
+                    alt="Calvin’s first photographer selfie: a black-and-white mirror shot behind a camera, its flash flaring"
+                  />
+                </picture>
+                <figcaption>first photographer selfie</figcaption>
+              </figure>
+            </div>
           </div>
         </div>
       </section>
@@ -595,8 +718,8 @@
           </p>
           <!--
             To add a photo to a card, put the original in assets/images/interests/,
-            list it in scripts/optimize-images.js, run `npm run images`, and add
-            <img class="interest-photo" ...> as the card's first child.
+            list it in scripts/optimize-images.js, run `npm run images`, and add a
+            <picture> holding <img class="interest-photo" ...> as the card's first child.
           -->
           <ul class="interest-grid">
             <li class="interest">
@@ -612,7 +735,10 @@
             <li class="interest">
               <svg class="icon" aria-hidden="true"><use href="img/icons.svg#utensils"></use></svg>
               <h3>Cooking &amp; weird food</h3>
-              <p>Trying, and attempting to make, weird new food/snacks. My most recent masterpiece was a PB&amp;J with cheese.</p>
+              <p>
+                Trying, and attempting to make, weird new food/snacks. My most recent masterpiece
+                was a PB&amp;J with cheese.
+              </p>
             </li>
             <li class="interest">
               <svg class="icon" aria-hidden="true"><use href="img/icons.svg#seedling"></use></svg>
@@ -623,14 +749,24 @@
               <svg class="icon" aria-hidden="true"><use href="img/icons.svg#plane"></use></svg>
               <h3>Travel</h3>
               <p>
-                Most recently a summer based in Lishui, China, and all over including places like Shanghai, Wenzhou, and Chongqing.
+                Most recently a summer based in Lishui, China, and all over including places like
+                Shanghai, Wenzhou, and Chongqing.
+              </p>
+            </li>
+            <li class="interest">
+              <svg class="icon" aria-hidden="true"><use href="img/icons.svg#camera"></use></svg>
+              <h3>Photography</h3>
+              <p>
+                Usually behind the camera instead of in front of it.
+                <a href="photography.html">See my photos</a>.
               </p>
             </li>
             <li class="interest">
               <svg class="icon" aria-hidden="true"><use href="img/icons.svg#people"></use></svg>
               <h3>People &amp; community</h3>
               <p>
-                Meeting new people, community events, and going to free movie night every Monday at Brewvies!
+                Meeting new people, community events, and going to free movie night every Monday at
+                Brewvies!
               </p>
             </li>
             <li class="interest interest-games">
@@ -641,13 +777,18 @@
             <li class="interest">
               <svg class="icon" aria-hidden="true"><use href="img/icons.svg#book"></use></svg>
               <h3>Reading</h3>
-              <p>Always in the middle of a book. Currently reading The Design of Everyday Things and Veniss Underground.</p>
+              <p>
+                Always in the middle of a book. Currently reading The Design of Everyday Things and
+                Veniss Underground.
+              </p>
             </li>
             <li class="interest">
               <svg class="icon" aria-hidden="true"><use href="img/icons.svg#vr"></use></svg>
               <h3>Immersive worlds</h3>
               <p>
-                Meow Wolf and anything else that lets me walk around inside someone’s imagination. I recently went to the coolest escape room I have ever done called Himestu Station in SLC.
+                Meow Wolf and anything else that lets me walk around inside someone’s imagination. I
+                recently went to the coolest escape room I have ever done called Himestu Station in
+                SLC.
               </p>
             </li>
             <li class="interest">
@@ -662,8 +803,10 @@
               <svg class="icon" aria-hidden="true"><use href="img/icons.svg#drum"></use></svg>
               <h3>Drums</h3>
               <p>
-                I taught 40+ students ages 5 to 56 for the past 3 years and am currently studying myself under Kelly Wallis.
-                <a href="#groove">Play a groove I wrote</a>.
+                I taught 40+ students ages 5 to 56 for the past 3 years and am currently studying
+                myself under Kelly Wallis.
+                <a href="#groove">Play a groove I wrote</a>, or
+                <a href="drums.html">hear me play</a>.
               </p>
             </li>
           </ul>
@@ -731,7 +874,8 @@ BD |o-oo -o-- o--o -oo-|</pre>
           <h2 id="contact-title">Got something worth <em>building</em>?</h2>
           <p class="contact-copy">
             I’m looking for full-time software engineering roles starting December 2026, especially
-            where design meets challenging engineering. If you have a position opening up or just want to talk about anything at all or go climb, hit me up!
+            where design meets challenging engineering. If you have a position opening up or just
+            want to talk about anything at all or go climb, hit me up!
           </p>
           <ul class="contact-links">
             <li>

@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Photography by Calvin Hickey, a software engineer and photographer in Salt Lake City. A gallery is on its way."
+    />
+    <meta name="theme-color" content="#f5f2eb" />
+    <!-- Blocking on purpose: sets the theme before first paint so there is no flash -->
+    <script src="js/head.js"></script>
+    <title>Photography | Calvin Hickey</title>
+    <link
+      rel="canonical"
+      href="https://00calvin00.github.io/Calvin_Hickey_Portfolio/photography.html"
+    />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png" />
+
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://00calvin00.github.io/Calvin_Hickey_Portfolio/photography.html"
+    />
+    <meta property="og:title" content="Photography | Calvin Hickey" />
+    <meta
+      property="og:description"
+      content="Photography by Calvin Hickey. A gallery is on its way."
+    />
+    <meta
+      property="og:image"
+      content="https://00calvin00.github.io/Calvin_Hickey_Portfolio/img/og-image.png"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Neon sign reading Calvin Hickey: let’s build things that help people"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="preload" href="fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="fonts/inter.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="css/styles.css" />
+    <script type="module" src="js/main.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="logo" href="./" aria-label="Calvin Hickey, homepage">CH<span>.</span></a>
+        <a class="button button-small" href="./#contact">Contact</a>
+        <button class="theme-toggle" type="button" aria-pressed="false" data-theme-toggle>
+          <svg class="icon when-light" aria-hidden="true">
+            <use href="img/icons.svg#moon"></use>
+          </svg>
+          <svg class="icon when-dark" aria-hidden="true"><use href="img/icons.svg#sun"></use></svg>
+          <span class="visually-hidden">Dark mode</span>
+          <span class="when-light" aria-hidden="true">Lights off</span>
+          <span class="when-dark" aria-hidden="true">Lights on</span>
+        </button>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- Placeholder until the gallery is ready -->
+      <section class="container not-found coming-soon" aria-labelledby="page-title">
+        <span class="hero-tag" aria-hidden="true">Photos</span>
+        <p class="eyebrow">Photography · coming soon</p>
+        <h1 id="page-title">Photos are still <em>developing</em>.</h1>
+        <p class="hero-intro">
+          I’m putting together a gallery of my favorite shots. Check back soon, or see what I’ve
+          been building in the meantime.
+        </p>
+        <!-- Same switcher on index, photography and drums; move aria-current to match the page -->
+        <nav class="mode-switch" aria-label="Sections of the site">
+          <p>What are you here for?</p>
+          <ul>
+            <li><a href="./">Engineering</a></li>
+            <li><a href="photography.html" aria-current="page">Photography</a></li>
+            <li><a href="drums.html">Drums</a></li>
+          </ul>
+        </nav>
+        <div class="hero-actions">
+          <a class="button" href="./#projects"
+            >See my engineering work
+            <svg class="icon" aria-hidden="true"><use href="img/icons.svg#arrow-right"></use></svg
+          ></a>
+          <a class="text-link" href="./#contact">Get in touch</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>© <span data-year>2026</span> Calvin Hickey</p>
+        <p>
+          Designed and hand-coded with HTML, CSS and JavaScript.
+          <a href="https://github.com/00Calvin00/Calvin_Hickey_Portfolio" rel="noopener"
+            >View the source</a
+          >
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
