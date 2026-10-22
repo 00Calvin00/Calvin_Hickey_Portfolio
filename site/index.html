@@ -10,6 +10,15 @@
     <meta name="theme-color" content="#f5f2eb" />
     <!-- Blocking on purpose: sets the theme before first paint so there is no flash -->
     <script src="js/head.js"></script>
+    <!-- Vercel Web Analytics: the script is served by Vercel once Analytics is enabled for the project -->
+    <script>
+      window.va =
+        window.va ||
+        function () {
+          (window.vaq = window.vaq || []).push(arguments);
+        };
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
     <title>Calvin Hickey | Software Engineer, Product &amp; Design</title>
     <link rel="canonical" href="https://00calvin00.github.io/Calvin_Hickey_Portfolio/" />
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
@@ -71,7 +80,6 @@
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
-
     <header class="site-header">
       <div class="container header-inner">
         <a class="logo" href="#top" aria-label="Calvin Hickey, back to top">CH<span>.</span></a>
