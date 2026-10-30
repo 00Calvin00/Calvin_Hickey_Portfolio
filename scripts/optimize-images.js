@@ -29,6 +29,7 @@ const IMAGES = [
   { src: 'interests/cosplay.jpg', name: 'interest-cosplay', widths: [480, 960] },
   { src: 'interests/camera.jpg', name: 'interest-camera', widths: [480, 960] },
   { src: 'uguide.png', name: 'uguide', widths: [700, 1400], crop: [16, 10], position: 'top' },
+  { src: 'hubble.png', name: 'hubble', widths: [700, 1400], crop: [16, 10], position: 'centre' },
   {
     src: 'apecoo.png',
     name: 'apecoo',

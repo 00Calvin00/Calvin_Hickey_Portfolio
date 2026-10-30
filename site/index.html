@@ -495,17 +495,25 @@
             </li>
 
             <li class="project-card">
-              <div class="project-media nebula">
+              <div class="project-media">
                 <span class="project-number" aria-hidden="true">02</span>
-                <div class="nebula-art" aria-hidden="true">
-                  <span class="nebula-word">Hubble</span>
-                  <span class="genre genre-1">Sci-fi</span>
-                  <span class="genre genre-2">Mystery</span>
-                  <span class="genre genre-3">Poetry</span>
-                  <span class="genre genre-4">Fantasy</span>
-                  <span class="genre genre-5">History</span>
-                  <span class="genre genre-6">Romance</span>
-                </div>
+                <picture>
+                  <source
+                    type="image/webp"
+                    srcset="img/hubble-700.webp 700w, img/hubble-1400.webp 1400w"
+                    sizes="(width <= 720px) 90vw, 640px"
+                  />
+                  <img
+                    src="img/hubble-700.jpg"
+                    srcset="img/hubble-700.jpg 700w, img/hubble-1400.jpg 1400w"
+                    sizes="(width <= 720px) 90vw, 640px"
+                    width="700"
+                    height="438"
+                    loading="lazy"
+                    decoding="async"
+                    alt="Hubble welcome screen: the hubble wordmark, the tagline “a quieter corner of the internet”, and Log In and Create Account buttons on a cream background"
+                  />
+                </picture>
               </div>
               <div class="project-body">
                 <p class="kicker">Book discovery app · 2026–present</p>
