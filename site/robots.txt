@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://00calvin00.github.io/Calvin_Hickey_Portfolio/sitemap.xml
+Sitemap: https://calvin-hickey.com/sitemap.xml

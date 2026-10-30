@@ -4,7 +4,7 @@
 
 My personal site: who I am, what I've built, and what I do when I'm away from a keyboard.
 
-**Live site:** https://00calvin00.github.io/Calvin_Hickey_Portfolio/
+**Live site:** https://calvin-hickey.com/
 
 | Light ("lights on")                                                | Dark ("lights off")                                            |
 | ------------------------------------------------------------------ | -------------------------------------------------------------- |

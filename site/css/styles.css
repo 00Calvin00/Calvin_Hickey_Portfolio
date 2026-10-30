@@ -1024,105 +1024,6 @@
     font-weight: 600;
   }
 
-  /* Hubble has no screenshot yet, so its card gets a drawn "Genre Nebula":
-     layered radial gradients for the gas clouds and a tiled star field. */
-  .nebula {
-    background:
-      radial-gradient(circle at 30% 40%, rgb(255 120 170 / 55%), transparent 38%),
-      radial-gradient(circle at 70% 60%, rgb(80 200 255 / 45%), transparent 40%),
-      radial-gradient(circle at 55% 25%, rgb(255 180 90 / 35%), transparent 30%), #0b1026;
-  }
-
-  .nebula::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image:
-      radial-gradient(1px 1px at 20px 30px, #fff, transparent),
-      radial-gradient(1px 1px at 90px 80px, #fff, transparent),
-      radial-gradient(1.5px 1.5px at 150px 20px, #fff, transparent),
-      radial-gradient(1px 1px at 60px 140px, #fff, transparent),
-      radial-gradient(1px 1px at 170px 120px, #fff, transparent);
-    background-size: 200px 160px;
-    opacity: 0.8;
-  }
-
-  .nebula-art {
-    position: relative;
-    height: 100%;
-    color: #fff;
-  }
-
-  .nebula-word {
-    position: absolute;
-    inset: 50% auto auto 50%;
-    font-family: var(--font-display);
-    font-size: clamp(2.5rem, 6vw, 4.5rem);
-    font-style: italic;
-    text-shadow: 0 0 30px rgb(255 255 255 / 45%);
-    transform: translate(-50%, -50%);
-  }
-
-  .genre {
-    position: absolute;
-    padding: 2px 10px;
-    border: 1px solid rgb(255 255 255 / 35%);
-    border-radius: 999px;
-    background: rgb(11 16 38 / 55%);
-    font-size: var(--text-xs);
-    letter-spacing: 0.04em;
-    transition: transform 600ms var(--ease-out);
-  }
-
-  .genre-1 {
-    top: 18%;
-    left: 14%;
-  }
-
-  .genre-2 {
-    top: 22%;
-    right: 12%;
-  }
-
-  .genre-3 {
-    bottom: 18%;
-    left: 22%;
-  }
-
-  .genre-4 {
-    right: 20%;
-    bottom: 14%;
-  }
-
-  .genre-5 {
-    top: 46%;
-    left: 6%;
-  }
-
-  .genre-6 {
-    top: 58%;
-    right: 6%;
-  }
-
-  /* Genres drift outward on hover, a nod to Hubble's spatial navigation */
-  .project-card:hover .genre-1,
-  .project-card:hover .genre-5 {
-    transform: translate(-8px, -6px);
-  }
-
-  .project-card:hover .genre-2,
-  .project-card:hover .genre-6 {
-    transform: translate(8px, -6px);
-  }
-
-  .project-card:hover .genre-3 {
-    transform: translate(-6px, 8px);
-  }
-
-  .project-card:hover .genre-4 {
-    transform: translate(8px, 6px);
-  }
-
   .project-body h3 {
     margin-block: 10px 14px;
     font-size: var(--text-h3);
@@ -1986,20 +1887,6 @@
     border-radius: 0;
     color: var(--color-accent);
     background: var(--color-bg);
-    font-family: var(--font-label);
-  }
-
-  [data-theme='dark'] .nebula-word {
-    color: var(--color-pink);
-    font-family: var(--font-tag);
-    font-style: normal;
-    text-shadow: var(--glow-pink);
-    transform: translate(-50%, -50%) rotate(-6deg);
-  }
-
-  [data-theme='dark'] .genre {
-    border-color: rgb(34 230 255 / 60%);
-    color: var(--color-cyan);
     font-family: var(--font-label);
   }
 
