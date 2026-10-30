@@ -13,6 +13,7 @@ const SOURCE_DIR = 'assets/images';
 const OUTPUT_DIR = 'site/img';
 
 // crop: optional aspect ratio [w, h]; position: which part to keep when cropping
+// fit: 'contain' fits the whole image in the crop instead, padding it with background
 const IMAGES = [
   { src: 'portrait.jpg', name: 'portrait', widths: [400, 800], crop: [4, 5], position: 'centre' },
   {
@@ -28,15 +29,22 @@ const IMAGES = [
   { src: 'interests/cosplay.jpg', name: 'interest-cosplay', widths: [480, 960] },
   { src: 'interests/camera.jpg', name: 'interest-camera', widths: [480, 960] },
   { src: 'uguide.png', name: 'uguide', widths: [700, 1400], crop: [16, 10], position: 'top' },
-  { src: 'apecoo.png', name: 'apecoo', widths: [700, 1400], crop: [16, 10], position: 'top' },
+  {
+    src: 'apecoo.png',
+    name: 'apecoo',
+    widths: [700, 1400],
+    crop: [16, 10],
+    fit: 'contain',
+    background: '#9fc6cf',
+  },
 ];
 
-async function build({ src, name, widths, crop, position }) {
+async function build({ src, name, widths, crop, position, fit = 'cover', background }) {
   for (const width of widths) {
     const height = crop ? Math.round((width * crop[1]) / crop[0]) : undefined;
     const pipeline = sharp(`${SOURCE_DIR}/${src}`)
       .rotate()
-      .resize({ width, height, fit: 'cover', position });
+      .resize({ width, height, fit, position, background });
     await pipeline.clone().webp({ quality: 78 }).toFile(`${OUTPUT_DIR}/${name}-${width}.webp`);
     await pipeline
       .clone()
